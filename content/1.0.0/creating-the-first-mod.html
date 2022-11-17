@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting Started: Creating a first mod :: Andraste Docs</title>
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Andraste Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://discord.tduniverse.org">
+            <img class="icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" />
+        </a>
+        <a class="navbar-item" href="https://github.com/AndrasteFramework">
+            <img class="icon" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" style="filter: invert(100%);"/>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="content" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Andraste Framework General</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="creating-the-first-mod.html">Creating a first mod</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="creating-the-first-plugin.html">Creating a first plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Advanced topics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mod-information.html">The mod.json file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="features/builtin/vfs.html">The builtin VFS feature</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Andraste Framework General</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Andraste Framework General</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Andraste Framework General</a></li>
+    <li>Getting Started</li>
+    <li><a href="creating-the-first-mod.html">Creating a first mod</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/AndrasteFramework/AndrasteFramework.github.io/edit/master/content/modules/ROOT/pages/creating-the-first-mod.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Getting Started: Creating a first mod</h1>
+<div class="sect1">
+<h2 id="_the_scenario_example"><a class="anchor" href="#_the_scenario_example"></a>The scenario / example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the following scenario, we&#8217;re going to outline the process of replacing an
+existing car model of the game "Test Drive Unlimited 2".
+This basically means we&#8217;re going to replace the files that make up the car.
+For this example, we&#8217;re also going to use a real existing mod, namely
+<a href="https://turboduck.net/files/file/321-2017-audi-r8-v10-plus-coupe-s-tronic/">this Audi R8</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_1_preparing_the_mod"><a class="anchor" href="#_step_1_preparing_the_mod"></a>Step 1: Preparing the mod</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since we&#8217;re using an existing mod, this is almost no problem, but if you were to
+develop your own mod, this is obviously the most important part. You somehow
+need to craft files that the game can then use.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s also always a good idea to separate your mod&#8217;s source files and having a
+dedicated "packaging" folder that holds the mod in it&#8217;s final form. You may have
+some packaging process in which you add a readme or something to your final
+bundle.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For Test Drive Unlimited 2, your packaging folder should have a decent
+file structure, i.e. the whole part starting from "Euro"
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_2_creating_a_basic_mod_json_file"><a class="anchor" href="#_step_2_creating_a_basic_mod_json_file"></a>Step 2: Creating a basic mod.json file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The most minimum working <code>mod.json</code> file looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">{
+    "slug": "r8-v10-2017",
+    "name": "2017 Audi R8",
+    "displayVersion": "1.0.0",
+    "authors": ["Star GT", "Brian Balliu"],
+    "description": "2017 Audi R8 V10 Plus Coupe S Tronic",
+    "configurations": {
+        "default": {
+            "features": { }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The most important value here is the <code>slug</code>. It&#8217;s the machine-friendly identifer
+of your mod and as such has to be unique and descriptive (which is why the cars
+MJ is included etc).</p>
+</div>
+<div class="paragraph">
+<p>Ignore the <code>configurations</code> block for now.</p>
+</div>
+<div class="paragraph">
+<p>The other values are only for communication with the user: What version is this
+mod release, what is the human readable name and the extended description of
+the mod and what are the authors.
+The values in this example have been extracted from the <a href="https://turboduck.net/files/file/321-2017-audi-r8-v10-plus-coupe-s-tronic/">linked Mod</a>.</p>
+</div>
+<div class="paragraph">
+<p>For more details on the <code>mod.json</code> file, visit the
+<a href="mod-information.html" class="xref page">Mod Information</a> page.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_3_selecting_and_defining_the_required_features"><a class="anchor" href="#_step_3_selecting_and_defining_the_required_features"></a>Step 3: Selecting and defining the required features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Andraste&#8217;s functionality is split into features.
+For this tutorial, the only relevant feature is the
+<a href="features/builtin/vfs.html" class="xref page">builtin VFS feature</a>.</p>
+</div>
+<div class="paragraph">
+<p>This feature allows you to re-map the games files with ones that you ship
+alongside your <code>mod.json</code>. Thus, edit your <code>features</code> configuration like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">"features": {
+    "andraste.builtin.vfs": {
+    "directories": [
+        "mod-data/"
+    ],
+    "files": {}
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Without going too much into detail, this will scan your mods <code>mod-data</code> folder,
+so you obviously need to create a <code>mod-data</code> folder alongside this <code>mod.json</code>,
+and map them into the game&#8217;s root folder.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>mod-data/Euro/README.txt</code>: If the game tries to open <code>Euro/README.txt</code>,
+your file will be used instead.</p>
+</div>
+<div class="paragraph">
+<p>Hint for TDU2 Modders: Yes, this does mean that the <code>mod-data</code> folder has to
+contain the following sub-folder structure: <code>Euro/Bnk</code>, you can&#8217;t directly mount
+your <code>vehicules</code> and <code>frontend</code> folders into the game, because that would make
+the configuration (and the <code>directories</code>) config more complicated.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The VFS Feature is NOT read-only, currently. So don&#8217;t use it for files,
+that the game will write (e.g. savegames).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more details on those features (e.g. the files option or how you can prevent
+the game from actually opening a file using that feature), see
+<a href="features/builtin/vfs.html" class="xref page">it&#8217;s dedicated article</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_4_get_your_mod_out_there"><a class="anchor" href="#_step_4_get_your_mod_out_there"></a>Step 4: Get your mod out there!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All that is left to do is shipping the folder (that is named after your slug and
+that contains the <code>mod.json</code> and <code>mod-data</code> folders) to your users!</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For convenience reasons, you can zip the folder, but Andraste currently does not
+support reading mods straight out of zip files.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting Started: Creating a first plugin :: Andraste Docs</title>
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Andraste Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://discord.tduniverse.org">
+            <img class="icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" />
+        </a>
+        <a class="navbar-item" href="https://github.com/AndrasteFramework">
+            <img class="icon" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" style="filter: invert(100%);"/>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="content" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Andraste Framework General</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="creating-the-first-mod.html">Creating a first mod</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="creating-the-first-plugin.html">Creating a first plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Advanced topics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mod-information.html">The mod.json file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="features/builtin/vfs.html">The builtin VFS feature</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Andraste Framework General</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Andraste Framework General</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Andraste Framework General</a></li>
+    <li>Getting Started</li>
+    <li><a href="creating-the-first-plugin.html">Creating a first plugin</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/AndrasteFramework/AndrasteFramework.github.io/edit/master/content/modules/ROOT/pages/creating-the-first-plugin.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Getting Started: Creating a first plugin</h1>
+<div class="sect1">
+<h2 id="_the_scenario_example"><a class="anchor" href="#_the_scenario_example"></a>The scenario / example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the following scenario, we&#8217;re only going to print a hello world message from
+our custom plugin.</p>
+</div>
+<div class="paragraph">
+<p>Everything else is very game-specific and may depend on a still-to-be-defined
+API, so you need to do some research and source code digging.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_1_preparing_the_plugin"><a class="anchor" href="#_step_1_preparing_the_plugin"></a>Step 1: Preparing the plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to have a plugin, you need to build your code into a DLL.
+This step is IDE specific, but in general, you should setup a .NET Framework
+4.8 project and make it depend on <code>Andraste.Payload.dll</code>, that you get from
+your binary distribution of Andraste (or self-compiled).</p>
+</div>
+<div class="paragraph">
+<p>Do note that this may implicitly depend on <code>Andraste.Shared.dll</code>, so it also
+needs to be accessible.</p>
+</div>
+<div class="paragraph">
+<p>Then, create the class that will be the entry point to your plugin and managing
+the lifecycle. In this example we call it <code>HelloWorldPlugin</code>. Also give your
+plugin a reasonable namespace.</p>
+</div>
+<div class="paragraph">
+<p>Next, make this class either extend <code>BasePlugin</code> or <code>IPlugin</code>. It is strongly
+recommended to extend <code>BasePlugin</code>, to profit from boiler plate reduction,
+unless you really can&#8217;t do it.</p>
+</div>
+<div class="paragraph">
+<p>This should produce something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">using Andraste.Payload.ModManagement;
+
+namespace Andraste.Examples.HelloWorld
+{
+    public class HelloWorldPlugin : BasePlugin
+    {
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we need to manually implement the methods, that are virtual in <code>BasePlugin</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">using Andraste.Payload.ModManagement;
+
+namespace Andraste.Examples.HelloWorld
+{
+    public class HelloWorldPlugin : BasePlugin
+    {
+        public override bool Enabled { get; set; }
+
+        protected override void PluginLoad()
+        {
+        }
+
+        protected override void PluginUnload()
+        {
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These are the two lifecycles that are common throughout Andraste:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Load/Unload: This is the more resource intensive operation. It is typically
+only called once when the game is launched with your plugin and when the game is
+closed (or your plugin REALLY is not wanted anymore in that session)</p>
+</li>
+<li>
+<p>Enable/Disable: This operation should be considerably lightweight, as this
+may be triggered by the user disabling particular plugins in their Launchers' UI</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now we need to worry about how to get the output to the Launcher/User:
+<code>Console.WriteLine</code> is not sufficient in most cases, as games rarely write to
+standard output, which is why Andraste has it&#8217;s own logging system that pipes
+output into the Launcher.</p>
+</div>
+<div class="paragraph">
+<p>This Logging functionality is built on top of <a href="https://nlog-project.org/">NLog</a>.
+So we implement logging functions, requesting a Logger Instance for the current
+class (which is always a good convention to follow!).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Here, we had to convert the auto property into a property with an
+explicit backing field, so that we are able to listen to changes of the
+<code>Enabled</code> value. This has nothing to do with Logging or Andraste, this is pure C#.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">using Andraste.Payload.ModManagement;
+using NLog;
+
+namespace Andraste.Examples.HelloWorld
+{
+    public class HelloWorldPlugin : BasePlugin
+    {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        private bool _enabled;
+        public override bool Enabled
+        {
+            get =&gt; _enabled;
+
+            set
+            {
+                _enabled = value;
+                Logger.Info($"The Hello World Plugin is now {(value ? "enabled" : "disabled")}");
+            }
+        }
+
+        protected override void PluginLoad()
+        {
+            Logger.Info("Loading Hello World Plugin :)");
+        }
+
+        protected override void PluginUnload()
+        {
+            Logger.Info("Unloading Hello World Plugin :)");
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_2_creating_a_basic_mod_json_file"><a class="anchor" href="#_step_2_creating_a_basic_mod_json_file"></a>Step 2: Creating a basic mod.json file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This works exactly the same as in the <a href="creating-the-first-mod.html" class="xref page">Creating a first mod</a> tutorial.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_3_using_the_plugin_feature"><a class="anchor" href="#_step_3_using_the_plugin_feature"></a>Step 3: Using the plugin feature</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Andraste&#8217;s functionality is split into features.
+For this tutorial, the only relevant feature is the builtin plugin feature.</p>
+</div>
+<div class="paragraph">
+<p>This feature allows Andraste to load the DLL created in Step 1 and load the
+plugin class.
+Thus, edit your <code>features</code> configuration like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">"features": {
+    "andraste.builtin.plugin": {
+        "assemblyFilePath": "HelloWorldPlugin.dll",
+        "pluginClassName": "Andraste.Examples.HelloWorld.HelloWorldPlugin"
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The DLL needs to reside into your mod folder at the specified location
+(here: root folder) and the <code>pluginClassName</code> needs to match (namespace <em>and</em>
+class name).</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it, you should be able to run your freshly created plugin!</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

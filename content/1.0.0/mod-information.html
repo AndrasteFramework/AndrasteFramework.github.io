@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>The ModInformation (mod.json file) :: Andraste Docs</title>
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Andraste Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://discord.tduniverse.org">
+            <img class="icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" />
+        </a>
+        <a class="navbar-item" href="https://github.com/AndrasteFramework">
+            <img class="icon" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" style="filter: invert(100%);"/>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="content" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Andraste Framework General</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="creating-the-first-mod.html">Creating a first mod</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="creating-the-first-plugin.html">Creating a first plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Advanced topics</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="mod-information.html">The mod.json file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="features/builtin/vfs.html">The builtin VFS feature</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Andraste Framework General</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Andraste Framework General</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Andraste Framework General</a></li>
+    <li>Advanced topics</li>
+    <li><a href="mod-information.html">The mod.json file</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/AndrasteFramework/AndrasteFramework.github.io/edit/master/content/modules/ROOT/pages/mod-information.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">The ModInformation (mod.json file)</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Information on this page may be out-of-date and is rather meant as
+a general guidance instead of an exhaustive format description.
+If you need to go beyond that, visit <a href="https://github.com/AndrasteFramework/Shared/blob/master/ModManagement/Json/ModInformation.cs" class="bare">https://github.com/AndrasteFramework/Shared/blob/master/ModManagement/Json/ModInformation.cs</a>
+for the actual in-code data structure.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How it works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order for Andraste to correctly load and apply your mod, it needs to know
+the required metadata, such as author, mod-name (slug), version and dependencies.
+This, as well as what to actually do with the mod, is defined in the <code>ModInformation</code>.</p>
+</div>
+<div class="paragraph">
+<p>This information is stored in the <code>mod.json</code> file, that has to be in the root
+level folder of your mod directory.</p>
+</div>
+<div class="paragraph">
+<p>Before the following sections go into detail, here is an exemplaric <code>mod.json</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">{
+    "slug": "andraste-example",
+    "name": "Andraste Example Mod",
+    "displayVersion": "1.0.0",
+    "authors": ["MeFisto94", "redd"],
+    "description": "An exemplaric mod for aspiring Andraste developers",
+    "configurations": {
+        "default": {
+            "features": {
+                "andraste.builtin.vfs": {
+                    "directories": [
+                        "mod-data/"
+                    ],
+                    "files": {}
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_metadata_section"><a class="anchor" href="#_the_metadata_section"></a>The Metadata Section</h3>
+<div class="paragraph">
+<p>As you can see, the mod information is a json object where the first few keys
+are very self explanatory:
+<code>name</code>, <code>description</code>, <code>authors</code> (an array!) and <code>displayVersion</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>displayVersion</code>, as opposed to a potential future <code>version</code> field,
+only has to be human readable. It doesn&#8217;t have to be machine readable, i.e. you could version your mod after the order of presidents of the united states!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>slug</code> is also very intuitive, but it still may need some explanation:
+The slug is basically a machine readable and path friendly name of your mod.
+The name of your mod folder should also equal your <code>slug</code>.
+It is used as a unique indentifier of your mod and is used both by Andraste
+internally and for cross-mod references or potential future features such as
+mod repositories and mod packs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To be path friendly, the slug should be all lowercase, alphanumerical characters and hyphens only
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_configuration_section"><a class="anchor" href="#_the_configuration_section"></a>The Configuration Section</h3>
+<div class="paragraph">
+<p>The configuration section allows the user to choose different <em>configurations</em>
+of your mod, tailored to their needs.
+This can range from multiple quality levels, to gameplay relevant changes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since the Mod Information is declarative, configurations are currently the only way of making your mod configurable/providing settings.
+If you have good ideas on how that situation could be improved, feel free to get
+in contact with us.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Currently, Andraste only supports exactly one configuration (this is a
+limitation of the Launcher). Furthermore that configuration should be called
+<code>default</code>. In general, there should always be a configuration called <code>default</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_feature_consumption_declaration"><a class="anchor" href="#_the_feature_consumption_declaration"></a>The Feature Consumption Declaration</h3>
+<div class="paragraph">
+<p>In order to declare, what your mod requires or provides, Andraste uses the
+concept of <code>features</code>.
+Every mod configures (<em>consumes</em>) features that are either provided by other
+<em>plugins</em> (code mods) or Andraste (<em>builtin</em>).</p>
+</div>
+<div class="paragraph">
+<p>In the above example you can see how the <code>andraste.builtin.vfs</code> feature is used.
+This feature is very commonly used, since it provides mods with a way to replace
+game files at runtime (which is what even the most basic mods need).</p>
+</div>
+<div class="paragraph">
+<p>The content of the feature&#8217;s json object is completely dependent on the feature.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>The built-in VFS Feature :: Andraste Docs</title>
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+    <script>var uiRootPath = '../../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../../..">Andraste Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://discord.tduniverse.org">
+            <img class="icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" />
+        </a>
+        <a class="navbar-item" href="https://github.com/AndrasteFramework">
+            <img class="icon" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" style="filter: invert(100%);"/>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="content" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Andraste Framework General</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../creating-the-first-mod.html">Creating a first mod</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../creating-the-first-plugin.html">Creating a first plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Advanced topics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../mod-information.html">The mod.json file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="vfs.html">The builtin VFS feature</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Andraste Framework General</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Andraste Framework General</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Andraste Framework General</a></li>
+    <li>Advanced topics</li>
+    <li>Features</li>
+    <li><a href="vfs.html">The builtin VFS feature</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/AndrasteFramework/AndrasteFramework.github.io/edit/master/content/modules/ROOT/pages/features/builtin/vfs.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">The built-in VFS Feature</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+VFS stands for Virtual File System. This means, that the real harddrive is abstracted away via software. This allows Andraste to redirect every attempt of the game to edit a file
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Currently the VFS is not read-only, the game could thus also overwrite your mod files.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How it works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As outlined by the above note, Andraste will build a dictionary of files that are to-be-redirected by mods. Whenever the game tries to open one of the relevant files, Andraste will instead open the file inside of your mods folders.</p>
+</div>
+<div class="paragraph">
+<p>This is the important feature that allows "soft modding" the game, without touching the games installation directory.
+As a side effect, it also allows to "hide" or "delete" files for the game, by redirecting them into the void, which can be used sometimes to skip intro videos / "bumpers"</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_use_the_feature"><a class="anchor" href="#_how_to_use_the_feature"></a>How to use the feature</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>andraste.builtin.vfs</code> feature supports two ways of specifying VFS redirects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Automatically redirect a whole folder&#8217;s contents (<strong>recommended</strong>)</p>
+</li>
+<li>
+<p>Manually list every file that is to be redirected</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_directory_redirects"><a class="anchor" href="#_directory_redirects"></a>Directory Redirects</h3>
+<div class="paragraph">
+<p>Just define a directory in which Andraste will look for files.
+Those files will then be mounted into the game.
+This means, that Andraste won&#8217;t redirect the whole folder (from the games perspective) into your mod directory, but only automatically build a list of available files, in analogy to the file redirects approach</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+If you had a <code>a.txt</code> file inside <code>mod-data</code> (which is a subfolder of your mod directory), it would be treated as if <code>a.txt</code> would be in the game root folder.
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This means, for TDU2, you want to have the "Euro" folder directly under the mod-data folder. This leaves our example with a folder structure of <code>mods/r8-v10-2017/mod-data/Euro/&#8230;&#8203;.`</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_file_redirects"><a class="anchor" href="#_file_redirects"></a>File Redirects</h3>
+<div class="paragraph">
+<p>In contrast to the directory redirects, this approach will manually list every file that is redirected.
+In the ModInformation JSON file, this is an object from game-relative path to
+mod path, so <code>{ "a.txt": "my-mod-data/b.txt" }</code> would redirect <code>a.txt</code> of the
+game folder into <code>b.txt</code> in your mod folder.</p>
+</div>
+<div class="paragraph">
+<p>This redirection approach is especially helpful, if you want to use the same
+mod file for multiple game files (e.g. sharing a texture), so you can just point
+them onto the same file, without having to duplicate them in your mod folder,
+effectively reducing your mod size.</p>
+</div>
+<div class="paragraph">
+<p>You can also use this to redirect the game to an non existent file
+(any path would do, as long as it&#8217;s not plain invalid), so that the game cannot
+load the file.</p>
+</div>
+<div class="paragraph">
+<p>If you use <code>INTENTIONAL</code> as the mod path, Andraste will <strong>NOT</strong> emit a warning,
+which it would do, if you otherwise try to redirect into an invalid file (it could be a typo).</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
