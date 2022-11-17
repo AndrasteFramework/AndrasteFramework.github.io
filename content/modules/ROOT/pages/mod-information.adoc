@@ -1,0 +1,84 @@
+= The ModInformation (mod.json file)
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2022/11/16
+
+NOTE: The Information on this page may be out-of-date and is rather meant as
+a general guidance instead of an exhaustive format description.
+If you need to go beyond that, visit https://github.com/AndrasteFramework/Shared/blob/master/ModManagement/Json/ModInformation.cs
+for the actual in-code data structure.
+
+== How it works
+In order for Andraste to correctly load and apply your mod, it needs to know
+the required metadata, such as author, mod-name (slug), version and dependencies.
+This, as well as what to actually do with the mod, is defined in the `ModInformation`.
+
+This information is stored in the `mod.json` file, that has to be in the root
+level folder of your mod directory.
+
+Before the following sections go into detail, here is an exemplaric `mod.json`:
+
+```
+{
+    "slug": "andraste-example",
+    "name": "Andraste Example Mod",
+    "displayVersion": "1.0.0",
+    "authors": ["MeFisto94", "redd"],
+    "description": "An exemplaric mod for aspiring Andraste developers",
+    "configurations": {
+        "default": {
+            "features": {
+                "andraste.builtin.vfs": {
+                    "directories": [
+                        "mod-data/"
+                    ],
+                    "files": {}
+                }
+            }
+        }
+    }
+}
+```
+
+=== The Metadata Section
+As you can see, the mod information is a json object where the first few keys
+are very self explanatory:
+`name`, `description`, `authors` (an array!) and `displayVersion`.
+
+TIP: `displayVersion`, as opposed to a potential future `version` field,
+only has to be human readable. It doesn't have to be machine readable, i.e. you could version your mod after the order of presidents of the united states!
+
+The `slug` is also very intuitive, but it still may need some explanation:
+The slug is basically a machine readable and path friendly name of your mod.
+The name of your mod folder should also equal your `slug`.
+It is used as a unique indentifier of your mod and is used both by Andraste
+internally and for cross-mod references or potential future features such as
+mod repositories and mod packs.
+
+NOTE: To be path friendly, the slug should be all lowercase, alphanumerical characters and hyphens only
+
+=== The Configuration Section
+The configuration section allows the user to choose different _configurations_
+of your mod, tailored to their needs.
+This can range from multiple quality levels, to gameplay relevant changes.
+
+NOTE: Since the Mod Information is declarative, configurations are currently the only way of making your mod configurable/providing settings.
+If you have good ideas on how that situation could be improved, feel free to get
+in contact with us.
+
+NOTE: Currently, Andraste only supports exactly one configuration (this is a
+limitation of the Launcher). Furthermore that configuration should be called
+`default`. In general, there should always be a configuration called `default`.
+
+=== The Feature Consumption Declaration
+In order to declare, what your mod requires or provides, Andraste uses the
+concept of `features`.
+Every mod configures (_consumes_) features that are either provided by other
+_plugins_ (code mods) or Andraste (_builtin_).
+
+In the above example you can see how the `andraste.builtin.vfs` feature is used.
+This feature is very commonly used, since it provides mods with a way to replace
+game files at runtime (which is what even the most basic mods need).
+
+The content of the feature's json object is completely dependent on the feature.
+

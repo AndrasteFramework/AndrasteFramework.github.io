@@ -1,0 +1,60 @@
+= Andraste Framework Overview
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2022/11/15
+
+== What is Andraste?
+Andraste, at it's core, is a generic modding framework, aiming to bring a modern
+toolset into old (DX 9) footnote:[Even older games may also work, but a lot of
+the features (such as the in-game overlay) have been written against Direct X 9]
+and modern games alike.
+It does so by injecting a .NET FX Runtime into native applications, allowing us
+to code the framework in a safe language (C#), which even opens up the
+possibility to write code modifications in .NET languages, that interface
+seamlessly with the native code of the game.
+
+== Getting Started
+=== Launching Games using the generic CLI Launcher
+NOTE: Other Launchers may have a different launch procedure, but this one is
+universally usable, for when no one wrote a game specific launcher yet.
+
+The generic CLI Launcher expects up to two command line arguments:
+```
+Andraste.Launcher.exe "C:\Path\To\Game.exe" [optional DLL Name]
+```
+
+This means, that in most cases you're fine by just dragging the game exe ontop
+of the Andraste.Launcher.exe and save that as a shortcut to use.
+
+.Drag and Dropping the Game Application by Drag and Dropping onto the Launcher
+image::dnd-open-with.png["Drag and Dropping the Game Application onto the Launcher"]
+
+NOTE: The default for "optional DLL Name" currently is Andraste.Payload.Generic.dll, which should work well for every game.
+
+NOTE: Choosing a different DLL is for advanced users only and is only listed
+for completeness. It is only ever relevant if there's a non-generic version of
+Andraste that provides additional features for specific games, but does NOT have
+a specific Launcher yet. *IF* it has, always prefer that Launcher over this one.
+
+=== Installing mods with the generic CLI Launcher
+NOTE: Other Launchers may have different (additional) ways of installing mods,
+but this one should apply to every launcher and it especially applies to the
+generic CLI launcher.
+
+In the same directory as the `Andraste.Launcher.exe`, there should be a `mods`
+folder. If not, create one.
+
+Installing mods is now as simple as placing every mod inside that folder.
+In case your mod came zipped, you probably have to unzip it.
+
+TIP: If the mod hasn't been found/loaded (check the logs), make sure the
+directory structure is correct: `mods` -> `mod-name` footnote:[This should
+correspond to the `slug` in the `mod.json`, but is not mandatory, just good
+practice] -> `mod.json`
+
+=== Creating a first mod
+See xref:creating-the-first-mod.adoc[here] for a step-by-step tutorial on
+creating modifications (i.e. non code changes).
+
+See xref:creating-the-first-plugin.adoc[here] for a step-by-step tutorial on
+creating plugins (i.e. code changes).

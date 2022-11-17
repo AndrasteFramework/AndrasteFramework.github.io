@@ -1,0 +1,15 @@
+= The Glossary
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2022/11/17
+
+== Mod vs Plugin
+In the wild, changes to a game are often called both, mod(ification) and plugin.
+For us at Andraste, mods and plugins have a different but distinct meaning.
+
+In general, everything that has the capability of _modifying_ a given
+application or game in any given way, for us is called Mod (modification).
+
+Plugins, in contrast, are a specific species of mods: They contain code
+modifications, such as hooks to game functions or writing to game memory,
+as opposed to asset-only changing modifications.

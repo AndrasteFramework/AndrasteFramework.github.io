@@ -1,0 +1,49 @@
+= The built-in VFS Feature
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2022/11/16
+
+NOTE: VFS stands for Virtual File System. This means, that the real harddrive is abstracted away via software. This allows Andraste to redirect every attempt of the game to edit a file
+
+CAUTION: Currently the VFS is not read-only, the game could thus also overwrite your mod files.
+
+== How it works
+As outlined by the above note, Andraste will build a dictionary of files that are to-be-redirected by mods. Whenever the game tries to open one of the relevant files, Andraste will instead open the file inside of your mods folders.
+
+This is the important feature that allows "soft modding" the game, without touching the games installation directory.
+As a side effect, it also allows to "hide" or "delete" files for the game, by redirecting them into the void, which can be used sometimes to skip intro videos / "bumpers"
+
+== How to use the feature
+The `andraste.builtin.vfs` feature supports two ways of specifying VFS redirects:
+
+* Automatically redirect a whole folder's contents (*recommended*)
+* Manually list every file that is to be redirected
+
+=== Directory Redirects
+Just define a directory in which Andraste will look for files.
+Those files will then be mounted into the game.
+This means, that Andraste won't redirect the whole folder (from the games perspective) into your mod directory, but only automatically build a list of available files, in analogy to the file redirects approach
+
+[example]
+If you had a `a.txt` file inside `mod-data` (which is a subfolder of your mod directory), it would be treated as if `a.txt` would be in the game root folder.
+
+NOTE: This means, for TDU2, you want to have the "Euro" folder directly under the mod-data folder. This leaves our example with a folder structure of `mods/r8-v10-2017/mod-data/Euro/....``
+
+
+=== File Redirects
+In contrast to the directory redirects, this approach will manually list every file that is redirected.
+In the ModInformation JSON file, this is an object from game-relative path to
+mod path, so `{ "a.txt": "my-mod-data/b.txt" }` would redirect `a.txt` of the
+game folder into `b.txt` in your mod folder.
+
+This redirection approach is especially helpful, if you want to use the same
+mod file for multiple game files (e.g. sharing a texture), so you can just point
+them onto the same file, without having to duplicate them in your mod folder,
+effectively reducing your mod size.
+
+You can also use this to redirect the game to an non existent file
+(any path would do, as long as it's not plain invalid), so that the game cannot
+load the file.
+
+If you use `INTENTIONAL` as the mod path, Andraste will *NOT* emit a warning,
+which it would do, if you otherwise try to redirect into an invalid file (it could be a typo).

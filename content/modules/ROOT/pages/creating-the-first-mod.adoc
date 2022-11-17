@@ -1,0 +1,101 @@
+= Getting Started: Creating a first mod
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2022/11/17
+
+== The scenario / example
+In the following scenario, we're going to outline the process of replacing an
+existing car model of the game "Test Drive Unlimited 2".
+This basically means we're going to replace the files that make up the car.
+For this example, we're also going to use a real existing mod, namely
+https://turboduck.net/files/file/321-2017-audi-r8-v10-plus-coupe-s-tronic/[this Audi R8]
+
+== Step 1: Preparing the mod
+Since we're using an existing mod, this is almost no problem, but if you were to
+develop your own mod, this is obviously the most important part. You somehow
+need to craft files that the game can then use.
+
+It's also always a good idea to separate your mod's source files and having a
+dedicated "packaging" folder that holds the mod in it's final form. You may have
+some packaging process in which you add a readme or something to your final
+bundle.
+
+NOTE: For Test Drive Unlimited 2, your packaging folder should have a decent
+file structure, i.e. the whole part starting from "Euro"
+
+== Step 2: Creating a basic mod.json file
+The most minimum working `mod.json` file looks like this:
+```
+{
+    "slug": "r8-v10-2017",
+    "name": "2017 Audi R8",
+    "displayVersion": "1.0.0",
+    "authors": ["Star GT", "Brian Balliu"],
+    "description": "2017 Audi R8 V10 Plus Coupe S Tronic",
+    "configurations": {
+        "default": {
+            "features": { }
+        }
+    }
+}
+```
+The most important value here is the `slug`. It's the machine-friendly identifer
+of your mod and as such has to be unique and descriptive (which is why the cars
+MJ is included etc).
+
+Ignore the `configurations` block for now.
+
+The other values are only for communication with the user: What version is this
+mod release, what is the human readable name and the extended description of
+the mod and what are the authors.
+The values in this example have been extracted from the https://turboduck.net/files/file/321-2017-audi-r8-v10-plus-coupe-s-tronic/[linked Mod].
+
+For more details on the `mod.json` file, visit the
+xref:mod-information.adoc[Mod Information] page.
+
+
+== Step 3: Selecting and defining the required features
+Andraste's functionality is split into features.
+For this tutorial, the only relevant feature is the
+xref:features/builtin/vfs.adoc[builtin VFS feature].
+
+This feature allows you to re-map the games files with ones that you ship
+alongside your `mod.json`. Thus, edit your `features` configuration like this:
+
+```
+"features": {
+    "andraste.builtin.vfs": {
+    "directories": [
+        "mod-data/"
+    ],
+    "files": {}
+    }
+}
+```
+
+Without going too much into detail, this will scan your mods `mod-data` folder,
+so you obviously need to create a `mod-data` folder alongside this `mod.json`,
+and map them into the game's root folder.
+
+Example: `mod-data/Euro/README.txt`: If the game tries to open `Euro/README.txt`,
+your file will be used instead.
+
+Hint for TDU2 Modders: Yes, this does mean that the `mod-data` folder has to
+contain the following sub-folder structure: `Euro/Bnk`, you can't directly mount
+your `vehicules` and `frontend` folders into the game, because that would make
+the configuration (and the `directories`) config more complicated.
+
+CAUTION: The VFS Feature is NOT read-only, currently. So don't use it for files,
+that the game will write (e.g. savegames).
+
+For more details on those features (e.g. the files option or how you can prevent
+the game from actually opening a file using that feature), see
+xref:features/builtin/vfs.adoc[it's dedicated article].
+
+== Step 4: Get your mod out there!
+All that is left to do is shipping the folder (that is named after your slug and
+that contains the `mod.json` and `mod-data` folders) to your users!
+
+TIP: For convenience reasons, you can zip the folder, but Andraste currently does not
+support reading mods straight out of zip files.
+

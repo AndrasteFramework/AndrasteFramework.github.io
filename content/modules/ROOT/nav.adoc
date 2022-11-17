@@ -1,0 +1,8 @@
+* xref:glossary.adoc[Glossary]
+* Getting Started
+** xref:creating-the-first-mod.adoc[Creating a first mod]
+** xref:creating-the-first-plugin.adoc[Creating a first plugin]
+* Advanced topics
+** xref:mod-information.adoc[The mod.json file]
+** Features
+*** xref:features/builtin/vfs.adoc[The builtin VFS feature]

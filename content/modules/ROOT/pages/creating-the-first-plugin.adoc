@@ -1,0 +1,146 @@
+= Getting Started: Creating a first plugin
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2022/11/17
+
+== The scenario / example
+In the following scenario, we're only going to print a hello world message from
+our custom plugin.
+
+Everything else is very game-specific and may depend on a still-to-be-defined
+API, so you need to do some research and source code digging.
+
+== Step 1: Preparing the plugin
+In order to have a plugin, you need to build your code into a DLL.
+This step is IDE specific, but in general, you should setup a .NET Framework
+4.8 project and make it depend on `Andraste.Payload.dll`, that you get from
+your binary distribution of Andraste (or self-compiled).
+
+Do note that this may implicitly depend on `Andraste.Shared.dll`, so it also
+needs to be accessible.
+
+Then, create the class that will be the entry point to your plugin and managing
+the lifecycle. In this example we call it `HelloWorldPlugin`. Also give your
+plugin a reasonable namespace.
+
+Next, make this class either extend `BasePlugin` or `IPlugin`. It is strongly
+recommended to extend `BasePlugin`, to profit from boiler plate reduction,
+unless you really can't do it.
+
+This should produce something like this:
+```
+using Andraste.Payload.ModManagement;
+
+namespace Andraste.Examples.HelloWorld
+{
+    public class HelloWorldPlugin : BasePlugin
+    {
+    }
+}
+```
+
+Next, we need to manually implement the methods, that are virtual in `BasePlugin`:
+```
+using Andraste.Payload.ModManagement;
+
+namespace Andraste.Examples.HelloWorld
+{
+    public class HelloWorldPlugin : BasePlugin
+    {
+        public override bool Enabled { get; set; }
+
+        protected override void PluginLoad()
+        {
+        }
+
+        protected override void PluginUnload()
+        {
+        }
+    }
+}
+```
+
+These are the two lifecycles that are common throughout Andraste:
+
+* Load/Unload: This is the more resource intensive operation. It is typically
+only called once when the game is launched with your plugin and when the game is
+closed (or your plugin REALLY is not wanted anymore in that session)
+
+* Enable/Disable: This operation should be considerably lightweight, as this
+may be triggered by the user disabling particular plugins in their Launchers' UI
+
+
+Now we need to worry about how to get the output to the Launcher/User:
+`Console.WriteLine` is not sufficient in most cases, as games rarely write to
+standard output, which is why Andraste has it's own logging system that pipes
+output into the Launcher.
+
+This Logging functionality is built on top of https://nlog-project.org/[NLog].
+So we implement logging functions, requesting a Logger Instance for the current
+class (which is always a good convention to follow!).
+
+NOTE: Here, we had to convert the auto property into a property with an
+explicit backing field, so that we are able to listen to changes of the
+`Enabled` value. This has nothing to do with Logging or Andraste, this is pure C#.
+
+```
+using Andraste.Payload.ModManagement;
+using NLog;
+
+namespace Andraste.Examples.HelloWorld
+{
+    public class HelloWorldPlugin : BasePlugin
+    {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        private bool _enabled;
+        public override bool Enabled
+        {
+            get => _enabled;
+
+            set
+            {
+                _enabled = value;
+                Logger.Info($"The Hello World Plugin is now {(value ? "enabled" : "disabled")}");
+            }
+        }
+
+        protected override void PluginLoad()
+        {
+            Logger.Info("Loading Hello World Plugin :)");
+        }
+
+        protected override void PluginUnload()
+        {
+            Logger.Info("Unloading Hello World Plugin :)");
+        }
+    }
+}
+```
+
+== Step 2: Creating a basic mod.json file
+
+This works exactly the same as in the xref:creating-the-first-mod.adoc[Creating a first mod] tutorial.
+
+== Step 3: Using the plugin feature
+Andraste's functionality is split into features.
+For this tutorial, the only relevant feature is the builtin plugin feature.
+
+This feature allows Andraste to load the DLL created in Step 1 and load the
+plugin class.
+Thus, edit your `features` configuration like this:
+
+```
+"features": {
+    "andraste.builtin.plugin": {
+        "assemblyFilePath": "HelloWorldPlugin.dll",
+        "pluginClassName": "Andraste.Examples.HelloWorld.HelloWorldPlugin"
+    }
+}
+```
+
+The DLL needs to reside into your mod folder at the specified location
+(here: root folder) and the `pluginClassName` needs to match (namespace _and_
+class name).
+
+That's it, you should be able to run your freshly created plugin!
