@@ -26,11 +26,11 @@ Andraste.Launcher.exe "C:\Path\To\Game.exe" [optional DLL Name] [-- optional fla
 This means, that in most cases you're fine by just dragging the game exe ontop
 of the Andraste.Launcher.exe and save that as a shortcut to use.
 
-TIP: You can also create a shortcut, or even better: add the Launcher.exe to Steam and just set the
-launch arguments there. That way you can easily launch Andraste and the Game as if it was on steam!
-
 .Drag and Dropping the Game Application by Drag and Dropping onto the Launcher
 image::dnd-open-with.png["Drag and Dropping the Game Application onto the Launcher"]
+
+TIP: You can also create a shortcut, or even better: add the Launcher.exe to Steam and just set the
+launch arguments there. That way you can easily launch Andraste and the Game as if it was on steam!
 
 NOTE: The default for "optional DLL Name" currently is Andraste.Payload.Generic.dll, which should work well for every game.
 
