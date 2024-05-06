@@ -1,6 +1,6 @@
 = The Glossary
 :author: MeFisto94
-:revnumber: 1.0
+:revnumber: 1.1
 :revdate: 2022/11/17
 
 == Mod vs Plugin
@@ -13,3 +13,18 @@ application or game in any given way, for us is called Mod (modification).
 Plugins, in contrast, are a specific species of mods: They contain code
 modifications, such as hooks to game functions or writing to game memory,
 as opposed to asset-only changing modifications.
+
+== Framework
+When talking about the "framework", we refer to the integral andraste component that is responsible
+for launching and hooking into the game. The framework provides all kinds of functionality for
+mod/plugin authors to use.
+
+There can be various _flavours_ of the framework, as some games may want to replace specific
+components to be more specific for their game. If this doesn't happen, we talk about the 
+_generic framwork_ (i.e. game agnostic, provided by the andraste team).
+
+When managing your UI Launcher _profiles_, you may have to manage framework versions that can
+mean varying andraste versions _and_ flavours.
+
+In contrast to the framework, there is the UI Launcher at the outer
+level and mods/plugins being driven by the framework.

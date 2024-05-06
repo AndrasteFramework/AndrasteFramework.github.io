@@ -1,0 +1,84 @@
+= Launching Games using the generic GUI Launcher
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2024/05/02
+
+The GUI Launcher is an application that primarly manages your _profiles_. Profiles are your
+isolated modding environments. Every profile has an associated game path, xref:glossary.adoc#\_framework[framework], mods folder and settings for that mods (load order, enabled status, version).
+
+NOTE: As opposed to other Andraste components, the GUI Launcher is very decoupled from the actual
+game you want to launch. As a result, the generic GUI Launcher should be capable of launching almost
+every game and andraste framework flavor. This means you can use the same launcher for multiple
+games even!
+
+== Getting Started
+=== Overview over the main menus
+.The Main Screen
+image::ui-homescreen.png["A screenshot of the main UI"]
+
+.The Profile Manager
+image::ui-profile-manager.png["A screenshot of the UI profile manager"]
+
+=== Create your first profile
+Everything in the UI Launcher revolves around profiles. As such, your first action has to be to
+create a profile. Click on the Profile Manager and there click on "Add Profile".
+
+This will open a wizard, whose steps look like the following:
+
+.Add Profile Wizard: Enter information about the game
+image::ui-add-profile-1.png["Add Profile Wizard Page 1"]
+
+On the first wizard page, you have to tell your profile which game to launch and which launch
+arguments (command line) to use. Most of the time, this is blank, but if you were launching
+the game with different arguments, you may want to adjust this here.
+
+.Add Profile Wizard: Give your profile a name
+image::ui-add-profile-2.png["Add Profile Wizard Page 2"]
+
+.Add Profile Wizard: Choose a path where your profile (and mods) will be stored.
+image::ui-add-profile-3.png["Add Profile Wizard Page 3"]
+
+On the third wizard page, the prefilled profile location should probably be fine, _unless_ you are
+planning on installing a lot of heavy mods and know you don't have enough disk storage on that
+partition. In that case, just pick a different location.
+
+.Add Profile Wizard: Choose the Andraste Framework Distribution to use
+image::ui-add-profile-4.png["Add Profile Wizard Page 4"]
+
+Andraste frameworks are a more advanced topic, covered xref:glossary.adoc#\_framework[here],
+but in most cases, picking the bundled framework should be fine. It will default to the most recent
+"generic" framework at the time of downloading the UI Launcher.
+
+NOTE: If any mod/plugin you download demands a specific version of andraste, you'll most likely
+need to download it and use the "external andraste framework" option here.
+
+=== Adding Mods to your profile
+Click on the "Mod Folder" button, it should open the correct folder in your Windows Explorer.
+Installing mods is now as simple as placing every mod inside that folder. In case your mod came
+zipped, you have to unzip it.
+You then have to press "Refresh Mods" for them to appear in your profile.
+
+TIP: If the mod hasn't been found/loaded (check the logs), make sure the
+directory structure is correct: `mods` -> `mod-name` footnote:[This should
+correspond to the `slug` in the `mod.json`, but is not mandatory, just good
+practice] -> `mod.json`
+
+
+=== Switching between profiles
+In case you have more than one profile, you can switch between them on the drop down next to 
+"Manage Profiles".
+
+In order to keep that drop down list small to the most relevant entries, you can "enable" profiles
+in the profile manager. Only enabled profiles will appear in the drop down.
+
+The list of mods should auto reload, but you can always press "Refresh Mods"
+
+NOTE: This isn't the best design decision and may change in the future. 
+
+== Advanced Profile Settings
+=== Profile Settings Dialog
+As opposed to the wizard, editing a profile has a more technical appearance, but the fields are the
+same.
+
+.The Profile Edit Dialog
+image::ui-edit-profile.png["The profile edit dialog"]

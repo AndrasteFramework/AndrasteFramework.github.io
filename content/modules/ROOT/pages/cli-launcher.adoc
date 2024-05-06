@@ -1,0 +1,79 @@
+= Launching Games using the CLI Launcher
+:author: MeFisto94
+:revnumber: 1.0
+:revdate: 2024/05/02
+
+The CLI Launcher is an integral part of every xref:glossary.adoc#_framework[framework] distribution.
+It may not be the version built by the Andraste team, but tailored to the specifics of the game.
+This is exactly it's purpose. Making sure the game launches and bootstrapping the framework
+appropriately.
+
+Since it's command line arguments function as some sort of API, it is expected that every CLI
+launcher *at least* supports the subset of the https://github.com/AndrasteFramework/Launcher[Generic Andraste Launcher].
+If this is not the case, the UI Launcher may not even be capable of launching the specific framework.
+
+NOTE: This documentation page aims to be a quick start, not a full and up-to-date reference
+manual for the command line arguments. When in doubt, consult the application or the source code.
+
+== Command line arguments
+
+NOTE: For Andraste 0.1.X, the launcher supported drag and dropping the game application on top of it. This is *NOT* supported anymore as of Andraste 0.2.X
+
+TIP: You can always use `Andraste.Launcher.exe --help` to see the built in help for all the command
+arguments.
+
+=== Overview
+The CLI is structured like this: `Andraste.Launcher.exe [global arguments] subcommand [command arguments]`, where the subcommand is one of `launch`, `attach` and `monitor`.
+
+The most common option is `launch`, which will launch the passed application, as opposed to `attach`
+and `monitor`, which will both attach to a running process, but `attach` requires a PID, while
+`monitor` will wait until the passed application is running and then attach to that.
+
+=== Mandatory Arguments
+The Launcher at least needs the following command line arguments to work:
+
+The Game Executable Path::
+This is the application that will be launched and inside of which an andraste framework is spawned.
+Prefer to enter an absolute path here and don't forget to use `""` so you don't need to escape spaces.
++
+The flag used for this is `--file`, as in `--file="C:\WINDOWS\system32\notepad.exe"`
++
+With the optional `--commandLine="foo"` flag, you can append things to the command line when
+starting the application. Some games expect the graphics backend, vsync or windowed mode here.
+
+The "mods.json" Path::
+The launcher needs to know which mods to pull from where, so you hand it a path to your mods.json,
+which is essentially the "profile folder" in UI terms.
++
+The flag used for this is `--modsJsonPath`, as in `--modsJsonPath="C:\WINDOWS\totally-not-mods.json"`
++
+NOTE: The launcher also supports `--modsPath` as the path to a folder of mods where it will
+derive the `mods.json` automatically. This is useful when debugging the framework, but for
+any serious use-case, especially for shortcuts/steam or third-party launchers, *do use* the
+mods.json file as it represents your profile settings and has a higher expressivity.
+
+The Framework DLL Path::
+The launcher needs to know which xref:glossary.adoc#_framework[framework] distribution to boot.
+This is typically just a relative path, as the launcher resides inside said distribution, but
+there may be multiple DLLs (e.g. one game specific, one `Andraste.Payload.Generic.dll`).
++
+The flag used for this is `--frameworkDll` as in `--frameworkDll="C:\WINDOWS\NotepadFramework.dll"`
++
+This flag is optional and may fall back to `Andraste.Payload.Generic.dll`
+
+=== Global Arguments
+==== Non Interactive mode
+When launching andraste with `--non-interactive`, the launcher will omit the default behavior
+of reading the payload logging files and redirecting them to stdout.
+
+== Installing mods with the generic CLI Launcher
+In the same directory as the `Andraste.Launcher.exe`, there should be a `mods`
+folder. If not, create one.
+
+Installing mods is now as simple as placing every mod inside that folder.
+In case your mod came zipped, you have to unzip it.
+
+TIP: If the mod hasn't been found/loaded (check the logs), make sure the
+directory structure is correct: `mods` -> `mod-name` footnote:[This should
+correspond to the `slug` in the `mod.json`, but is not mandatory, just good
+practice] -> `mod.json`

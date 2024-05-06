@@ -1,8 +1,10 @@
 * xref:glossary.adoc[Glossary]
 * Getting Started
-** xref:creating-the-first-mod.adoc[Creating a first mod]
-** xref:creating-the-first-plugin.adoc[Creating a first plugin]
+** xref:getting-started/ui-launcher.adoc[The UI Launcher]
+** xref:getting-started/creating-the-first-mod.adoc[Creating a first mod]
+** xref:getting-started/creating-the-first-plugin.adoc[Creating a first plugin]
 * Advanced topics
+** xref:cli-launcher.adoc[The CLI Launcher]
 ** xref:mod-information.adoc[The mod.json file]
 ** Features
 *** xref:features/builtin/vfs.adoc[The builtin VFS feature]

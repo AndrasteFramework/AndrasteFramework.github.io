@@ -120,7 +120,7 @@ namespace Andraste.Examples.HelloWorld
 
 == Step 2: Creating a basic mod.json file
 
-This works exactly the same as in the xref:creating-the-first-mod.adoc[Creating a first mod] tutorial.
+This works exactly the same as in the xref:getting-started/creating-the-first-mod.adoc[Creating a first mod] tutorial.
 
 == Step 3: Using the plugin feature
 Andraste's functionality is split into features.
