@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Launching Games using the generic GUI Launcher :: Andraste Docs</title>
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Andraste Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://discord.tduniverse.org">
+            <img class="icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" />
+        </a>
+        <a class="navbar-item" href="https://github.com/AndrasteFramework">
+            <img class="icon" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" style="filter: invert(100%);"/>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="content" data-version="1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Andraste Framework General</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="ui-launcher.html">The UI Launcher</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="creating-the-first-mod.html">Creating a first mod</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="creating-the-first-plugin.html">Creating a first plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Advanced topics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cli-launcher.html">The CLI Launcher</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mod-information.html">The mod.json file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../features/builtin/vfs.html">The builtin VFS feature</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Andraste Framework General</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Andraste Framework General</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Andraste Framework General</a></li>
+    <li>Getting Started</li>
+    <li><a href="ui-launcher.html">The UI Launcher</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/AndrasteFramework/AndrasteFramework.github.io/edit/master/content/modules/ROOT/pages/getting-started/ui-launcher.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Launching Games using the generic GUI Launcher</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The GUI Launcher is an application that primarly manages your <em>profiles</em>. Profiles are your
+isolated modding environments. Every profile has an associated game path, <a href="../glossary.html#\_framework" class="xref page">framework</a>, mods folder and settings for that mods (load order, enabled status, version).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As opposed to other Andraste components, the GUI Launcher is very decoupled from the actual
+game you want to launch. As a result, the generic GUI Launcher should be capable of launching almost
+every game and andraste framework flavor. This means you can use the same launcher for multiple
+games even!
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a>Getting Started</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_over_the_main_menus"><a class="anchor" href="#_overview_over_the_main_menus"></a>Overview over the main menus</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-homescreen.png" alt="A screenshot of the main UI">
+</div>
+<div class="title">Figure 1. The Main Screen</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-profile-manager.png" alt="A screenshot of the UI profile manager">
+</div>
+<div class="title">Figure 2. The Profile Manager</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_your_first_profile"><a class="anchor" href="#_create_your_first_profile"></a>Create your first profile</h3>
+<div class="paragraph">
+<p>Everything in the UI Launcher revolves around profiles. As such, your first action has to be to
+create a profile. Click on the Profile Manager and there click on "Add Profile".</p>
+</div>
+<div class="paragraph">
+<p>This will open a wizard, whose steps look like the following:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-add-profile-1.png" alt="Add Profile Wizard Page 1">
+</div>
+<div class="title">Figure 3. Add Profile Wizard: Enter information about the game</div>
+</div>
+<div class="paragraph">
+<p>On the first wizard page, you have to tell your profile which game to launch and which launch
+arguments (command line) to use. Most of the time, this is blank, but if you were launching
+the game with different arguments, you may want to adjust this here.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-add-profile-2.png" alt="Add Profile Wizard Page 2">
+</div>
+<div class="title">Figure 4. Add Profile Wizard: Give your profile a name</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-add-profile-3.png" alt="Add Profile Wizard Page 3">
+</div>
+<div class="title">Figure 5. Add Profile Wizard: Choose a path where your profile (and mods) will be stored.</div>
+</div>
+<div class="paragraph">
+<p>On the third wizard page, the prefilled profile location should probably be fine, <em>unless</em> you are
+planning on installing a lot of heavy mods and know you don&#8217;t have enough disk storage on that
+partition. In that case, just pick a different location.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-add-profile-4.png" alt="Add Profile Wizard Page 4">
+</div>
+<div class="title">Figure 6. Add Profile Wizard: Choose the Andraste Framework Distribution to use</div>
+</div>
+<div class="paragraph">
+<p>Andraste frameworks are a more advanced topic, covered <a href="../glossary.html#\_framework" class="xref page">here</a>,
+but in most cases, picking the bundled framework should be fine. It will default to the most recent
+"generic" framework at the time of downloading the UI Launcher.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If any mod/plugin you download demands a specific version of andraste, you&#8217;ll most likely
+need to download it and use the "external andraste framework" option here.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_mods_to_your_profile"><a class="anchor" href="#_adding_mods_to_your_profile"></a>Adding Mods to your profile</h3>
+<div class="paragraph">
+<p>Click on the "Mod Folder" button, it should open the correct folder in your Windows Explorer.
+Installing mods is now as simple as placing every mod inside that folder. In case your mod came
+zipped, you have to unzip it.
+You then have to press "Refresh Mods" for them to appear in your profile.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If the mod hasn&#8217;t been found/loaded (check the logs), make sure the
+directory structure is correct: <code>mods</code> &#8594; <code>mod-name</code> <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> &#8594; <code>mod.json</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_switching_between_profiles"><a class="anchor" href="#_switching_between_profiles"></a>Switching between profiles</h3>
+<div class="paragraph">
+<p>In case you have more than one profile, you can switch between them on the drop down next to
+"Manage Profiles".</p>
+</div>
+<div class="paragraph">
+<p>In order to keep that drop down list small to the most relevant entries, you can "enable" profiles
+in the profile manager. Only enabled profiles will appear in the drop down.</p>
+</div>
+<div class="paragraph">
+<p>The list of mods should auto reload, but you can always press "Refresh Mods"</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This isn&#8217;t the best design decision and may change in the future.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_profile_settings"><a class="anchor" href="#_advanced_profile_settings"></a>Advanced Profile Settings</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_profile_settings_dialog"><a class="anchor" href="#_profile_settings_dialog"></a>Profile Settings Dialog</h3>
+<div class="paragraph">
+<p>As opposed to the wizard, editing a profile has a more technical appearance, but the fields are the
+same.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/ui-edit-profile.png" alt="The profile edit dialog">
+</div>
+<div class="title">Figure 7. The Profile Edit Dialog</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. This should correspond to the <code>slug</code> in the <code>mod.json</code>, but is not mandatory, just good practice
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
