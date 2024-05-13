@@ -47,7 +47,7 @@ Ignore the `configurations` block for now.
 
 The other values are only for communication with the user: What version is this
 mod release, what is the human readable name and the extended description of
-the mod and what are the authors.
+the mod and who are the authors.
 The values in this example have been extracted from the https://turboduck.net/files/file/321-2017-audi-r8-v10-plus-coupe-s-tronic/[linked Mod].
 
 For more details on the `mod.json` file, visit the
