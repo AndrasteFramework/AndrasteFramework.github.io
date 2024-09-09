@@ -37,6 +37,9 @@ Before the following sections go into detail, here is an exemplaric `mod.json`:
                 }
             }
         }
+    },
+    "dependencies": {
+        "my-other-mod": "^1.2.3"
     }
 }
 ```
@@ -49,9 +52,11 @@ are very self explanatory:
 TIP: `displayVersion`, as opposed to the `semanticVersion` field, only has to be human readable.
 It doesn't have to be machine readable, i.e. you could version your mod whatever you like!
 
-The `semanticVersion` is a version format in [Semantic](https://semver.org/) format.
+The `semanticVersion` is a version format in https://semver.org/[Semantic] format.
 This ensures mods can specify dependencies on each other with version ranges and also
-helps for future mod repositories to be able to reason about auto updating mods
+helps for future mod repositories to be able to reason about auto updating mods.
+See https://docs.npmjs.com/about-semantic-versioning#incrementing-semantic-versions-in-published-packages[here]
+for a recommendation of how to keep your version numbers according to SemVer.
 
 The `slug` is also very intuitive, but it still may need some explanation:
 The slug is basically a machine readable and path friendly name of your mod.
@@ -60,7 +65,9 @@ It is used as a unique indentifier of your mod and is used both by Andraste
 internally and for cross-mod references or potential future features such as
 mod repositories and mod packs.
 
-NOTE: To be path friendly, the slug should be all lowercase, alphanumerical characters and hyphens only
+NOTE: To be path friendly, the slug should be all lowercase, alphanumerical characters and hyphens only. It is especially forbidden to prefix the slug
+with an `@` or using forward slashes, as that is is reserved for other
+uses, such as `@game/pinball` and `@andraste/core`
 
 === The Configuration Section
 The configuration section allows the user to choose different _configurations_
@@ -87,3 +94,24 @@ game files at runtime (which is what even the most basic mods need).
 
 The content of the feature's json object is completely dependent on the feature.
 
+=== Dependencies
+Whenever you want to express that your mod requires the presence of another mod,
+you use the dependencies field for that. If you have a programming background,
+this will feel natural to you.
+
+In Andraste, the dependencies field is key-value map, mapping the required
+dependency's slug to a version number _range_.
+The version range is following the https://docs.npmjs.com/about-semantic-versioning#using-semantic-versioning-to-specify-update-types-your-package-can-accept[npm flavour]
+of semantic version ranges. As such, the above example of `^1.2.3` means:
+At least 1.2.3, but also every minor version upgrades (e.g. `1.9.9`).
+
+This is also the most common dependency type you want, as minor releases
+are promising to add new features without breaking backward compatibility,
+so the only release of `my-other-mod` that *could* actively break your
+`andraste-example` is starting with `2.0.0`
+
+As outlined above, there are, similar to npm, namespaced dependencies,
+that should not be occupied by user mods. Instead, those will be _provided_
+at runtime based on the mod framework. Two examples of those namespaces are
+`@game`, which can be used to specify dependencies on certain game versions
+and `@andraste`, for andraste components.

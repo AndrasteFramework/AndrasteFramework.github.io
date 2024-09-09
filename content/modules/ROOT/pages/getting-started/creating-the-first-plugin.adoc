@@ -122,6 +122,14 @@ namespace Andraste.Examples.HelloWorld
 
 This works exactly the same as in the xref:getting-started/creating-the-first-mod.adoc[Creating a first mod] tutorial.
 
+Note that if you want to reference any classes that your plugin doesn't provide, you should correctly reference that
+in the xref:mod-information.adoc#_dependencies[dependencies] section of the `mod.json`.
+
+While Andraste currently doesn't isolate the classpath, meaning you could load any DLL of the users current mods,
+explicitly stating dependencies helps for maximum compatibility and transparency to the user.
+
+NOTE: This even includes specifying dependencies on Andraste Features and Versions as well as the game
+
 == Step 3: Using the plugin feature
 Andraste's functionality is split into features.
 For this tutorial, the only relevant feature is the builtin plugin feature.
