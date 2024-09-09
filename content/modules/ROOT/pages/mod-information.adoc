@@ -1,7 +1,7 @@
 = The ModInformation (mod.json file)
 :author: MeFisto94
 :revnumber: 1.0
-:revdate: 2022/11/16
+:revdate: 2024/09/09
 
 NOTE: The Information on this page may be out-of-date and is rather meant as
 a general guidance instead of an exhaustive format description.
@@ -10,7 +10,7 @@ for the actual in-code data structure.
 
 == How it works
 In order for Andraste to correctly load and apply your mod, it needs to know
-the required metadata, such as author, mod-name (slug), version and dependencies.
+the required metadata, such as author, mod-name (slug), versions and dependencies.
 This, as well as what to actually do with the mod, is defined in the `ModInformation`.
 
 This information is stored in the `mod.json` file, that has to be in the root
@@ -23,6 +23,7 @@ Before the following sections go into detail, here is an exemplaric `mod.json`:
     "slug": "andraste-example",
     "name": "Andraste Example Mod",
     "displayVersion": "1.0.0",
+    "semanticVersion": "1.0.0",
     "authors": ["MeFisto94", "redd"],
     "description": "An exemplaric mod for aspiring Andraste developers",
     "configurations": {
@@ -43,10 +44,14 @@ Before the following sections go into detail, here is an exemplaric `mod.json`:
 === The Metadata Section
 As you can see, the mod information is a json object where the first few keys
 are very self explanatory:
-`name`, `description`, `authors` (an array!) and `displayVersion`.
+`name`, `description`, `authors` (an array!), `displayVersion` and `semanticVersion`.
 
-TIP: `displayVersion`, as opposed to a potential future `version` field,
-only has to be human readable. It doesn't have to be machine readable, i.e. you could version your mod after the order of presidents of the united states!
+TIP: `displayVersion`, as opposed to the `semanticVersion` field, only has to be human readable.
+It doesn't have to be machine readable, i.e. you could version your mod whatever you like!
+
+The `semanticVersion` is a version format in [Semantic](https://semver.org/) format.
+This ensures mods can specify dependencies on each other with version ranges and also
+helps for future mod repositories to be able to reason about auto updating mods
 
 The `slug` is also very intuitive, but it still may need some explanation:
 The slug is basically a machine readable and path friendly name of your mod.

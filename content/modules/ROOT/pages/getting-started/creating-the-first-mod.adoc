@@ -1,7 +1,7 @@
 = Getting Started: Creating a first mod
 :author: MeFisto94
 :revnumber: 1.0
-:revdate: 2022/11/17
+:revdate: 2024/09/09
 
 == The scenario / example
 In the following scenario, we're going to outline the process of replacing an
@@ -30,6 +30,7 @@ The most minimum working `mod.json` file looks like this:
     "slug": "r8-v10-2017",
     "name": "2017 Audi R8",
     "displayVersion": "1.0.0",
+    "semanticVersion": "1.0.0",
     "authors": ["Star GT", "Brian Balliu"],
     "description": "2017 Audi R8 V10 Plus Coupe S Tronic",
     "configurations": {
